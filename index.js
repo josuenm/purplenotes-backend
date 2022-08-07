@@ -9,9 +9,16 @@ import "dotenv/config.js";
 const __dirname = path.resolve();
 const app = express();
 
-app.use(cors());
+const CORS_URL = process.env.CORS_URL;
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  cors({
+    credentials: false,
+    origin: CORS_URL,
+  })
+);
 
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
