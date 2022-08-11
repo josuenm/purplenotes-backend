@@ -13,13 +13,7 @@ const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(
-  cors({
-    credentials: false,
-    origin: CORS_URL,
-    methods: ["GET", "PUT", "PATCH", "POST", "DELETE"],
-  })
-);
+app.use(cors());
 
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
