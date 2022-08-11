@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import usersRouter from "./src/routes/users.js";
 import notesRouter from "./src/routes/notes.js";
-import allowCors from "./src/middlewares/allowCors.js";
+import cors from "cors";
 import "./src/config/database.js";
 import "dotenv/config.js";
 
@@ -12,7 +12,11 @@ const app = express();
 const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
-app.use(allowCors());
+app.use(
+  cors({
+    origin: CORS_URL,
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
