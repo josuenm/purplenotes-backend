@@ -1,8 +1,10 @@
 import "dotenv/config";
 
 const allowCors = (fn) => async (req, res, next) => {
+  const CORS_URL = process.env.CORS_URL;
+
   res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", CORS_URL);
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader(
