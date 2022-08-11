@@ -17,12 +17,10 @@ app.use(
   cors({
     credentials: false,
     origin: CORS_URL,
+    methods: ["GET", "PUT", "PATCH", "POST", "DELETE"],
   })
 );
 
-app.get("/", (req, res) => {
-  res.json({ server: { status: "OK" } });
-});
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
 
