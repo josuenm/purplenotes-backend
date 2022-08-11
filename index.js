@@ -12,11 +12,14 @@ const app = express();
 const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", CORS_URL);
-  next();
-});
-app.use(cors());
+app.use(
+  cors({
+    origin: CORS_URL,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
