@@ -13,9 +13,15 @@ const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", CORS_URL);
+  res.header("Access-Control-Allow-Origin", "*");
   next();
 });
+app.use(
+  cors({
+    credentials: false,
+    origin: CORS_URL || "*",
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
