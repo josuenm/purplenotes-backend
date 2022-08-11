@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: false,
-    origin: CORS_URL,
+    origin: CORS_URL || '*',
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
