@@ -12,12 +12,10 @@ const app = express();
 const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
-app.use(
-  cors({
-    credentials: false,
-    origin: CORS_URL || '*',
-  })
-);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", CORS_URL);
+  next();
+});
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
