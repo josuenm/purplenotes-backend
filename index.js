@@ -12,6 +12,11 @@ const app = express();
 const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json({ status: "OK", corsURL: CORS_URL });
+});
+
 app.use(allowCors);
 app.use(express.static(path.join(__dirname, "public")));
 
