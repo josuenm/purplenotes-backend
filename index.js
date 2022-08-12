@@ -1,10 +1,10 @@
+import "./src/config/database.js";
+import "dotenv/config.js";
 import express from "express";
 import path from "path";
 import usersRouter from "./src/routes/users.js";
 import notesRouter from "./src/routes/notes.js";
-import allowCors from "./src/middlewares/allowCors.js";
-import "./src/config/database.js";
-import "dotenv/config.js";
+import cors from "cors";
 
 const __dirname = path.resolve();
 const app = express();
@@ -13,11 +13,13 @@ const CORS_URL = process.env.CORS_URL;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ status: "OK", corsURL: CORS_URL });
-});
+app.use(
+  cors({
+    credentials: false,
+    origin: CORS_URL,
+  })
+);
 
-app.use(allowCors);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
