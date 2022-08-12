@@ -1,9 +1,9 @@
-import "dotenv/config.js";
-import jwt from "jsonwebtoken";
-import User from "../models/user.js";
+require("dotenv/config.js");
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.js");
 const secret = process.env.JWT_TOKEN;
 
-export const WithAuth = (req, res, next) => {
+const WithAuth = (req, res, next) => {
   const token = req.headers["jsnotes.token"];
 
   if (!token) {
@@ -24,3 +24,5 @@ export const WithAuth = (req, res, next) => {
     });
   }
 };
+
+module.exports = { WithAuth };

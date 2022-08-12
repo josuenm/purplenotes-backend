@@ -1,6 +1,6 @@
-import express from "express";
-import Note from "../models/note.js";
-import { WithAuth } from "../middlewares/auth.js";
+const express = require("express");
+const Note = require("../models/note.js");
+const { WithAuth } = require("../middlewares/auth.js");
 
 const router = express.Router();
 
@@ -108,4 +108,4 @@ router.delete("/:id", WithAuth, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

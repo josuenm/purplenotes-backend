@@ -1,10 +1,10 @@
-import "./src/config/database.js";
-import "dotenv/config.js";
-import express from "express";
-import path from "path";
-import usersRouter from "./src/routes/users.js";
-import notesRouter from "./src/routes/notes.js";
-import cors from "cors";
+require("./src/config/database");
+require("dotenv/config");
+const express = require("express");
+const path = require("path");
+const usersRouter = require("./src/routes/users.js");
+const notesRouter = require("./src/routes/notes.js");
+const cors = require("cors");
 
 const __dirname = path.resolve();
 const app = express();

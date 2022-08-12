@@ -1,8 +1,8 @@
-import express from "express";
-import User from "../models/user.js";
-import jwt from "jsonwebtoken";
-import "dotenv/config.js";
-import { WithAuth } from "../middlewares/auth.js";
+require("dotenv/config.js");
+const express = require("express");
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const { WithAuth } = require("../middlewares/auth");
 
 const secret = process.env.JWT_TOKEN;
 
@@ -89,4 +89,4 @@ router.delete("/delete", WithAuth, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
