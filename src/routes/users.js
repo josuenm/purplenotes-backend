@@ -12,6 +12,12 @@ router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    const userAleadyExists = await User.findOne({ email });
+
+    if (userAleadyExists) {
+      res.status(409).json({ error: "User already exists" });
+    }
+
     const user = new User({ name, email, password });
     await user.save();
     const token = jwt.sign({ email }, secret, { expiresIn: "30d" });
@@ -26,6 +32,10 @@ router.post("/login", async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
+
+    if (!user) {
+      res.status(404).json({ error: "User not found" });
+    }
 
     if (!user) {
       res.status(401).json({ error: "Incorrect email or passowrd" });
