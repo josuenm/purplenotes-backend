@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
     const userAleadyExists = await User.findOne({ email });
 
     if (userAleadyExists) {
-      res.status(409).json({ error: "User already exists" });
+      return res.status(409).json({ error: "User already exists" });
     }
 
     const user = new User({ name, email, password });
@@ -34,11 +34,7 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      res.status(404).json({ error: "User not found" });
-    }
-
-    if (!user) {
-      res.status(401).json({ error: "Incorrect email or passowrd" });
+      res.status(404).json({ error: "Incorrect email or passowrd" });
     } else {
       user.isCorrectPassword(password, function (same) {
         if (!same) {
