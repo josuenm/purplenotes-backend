@@ -13,8 +13,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    credentials: false,
     origin: CORS_URL,
+    methods: "GET,HEAD,PUT,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
 
