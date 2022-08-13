@@ -4,7 +4,7 @@ const User = require("../models/user.js");
 const secret = process.env.JWT_TOKEN;
 
 const WithAuth = (req, res, next) => {
-  const token = req.headers["jsnotes.token"];
+  const token = req.headers["purplenotes.token"];
 
   if (!token) {
     res.status(401).json({ error: "Unauthorized: no token provided" });
