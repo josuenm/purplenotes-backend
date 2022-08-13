@@ -14,15 +14,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: CORS_URL,
-    methods: "GET,PUT,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
   })
 );
-
-app.get("/status", (req, res) => {
-  res.json({ status: process.env.STATUS || "Bad" });
-});
 
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
