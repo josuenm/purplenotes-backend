@@ -7,16 +7,7 @@ const cors = require("cors");
 
 const app = express();
 
-const CORS_URL = process.env.CORS_URL;
-
 app.use(express.json());
-
-app.use(
-  cors({
-    credentials: false,
-    origin: CORS_URL,
-  })
-);
 
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
