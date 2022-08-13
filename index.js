@@ -21,7 +21,7 @@ app.use(
 );
 
 app.get("/status", (req, res) => {
-  res.json({ status: "OK" });
+  res.json({ status: process.env.STATUS || "Bad" });
 });
 
 app.use("/users", usersRouter);
