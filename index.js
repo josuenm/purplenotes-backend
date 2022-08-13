@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: CORS_URL,
-    methods: "GET,HEAD,PUT,POST,DELETE",
+    methods: "GET,PUT,POST,DELETE",
     preflightContinue: false,
     optionsSuccessStatus: 204,
   })
