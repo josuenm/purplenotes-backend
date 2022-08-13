@@ -18,6 +18,10 @@ app.use(
   })
 );
 
+app.get("/status", (req, res) => {
+  res.json({ status: "OK" });
+});
+
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
 
