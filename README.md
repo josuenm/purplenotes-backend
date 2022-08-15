@@ -2,6 +2,10 @@
 
 Essa é uma aplicação back-end para suprir o front-end com autenticação e manipulação das anotações.
 
+<p>
+Acesse agora <a href="https://purplenotes.vercel.app" target="_blank">https://purplenotes.vercel.app</a>.
+</p>
+
 # Linguagens, plataformas, banco de dados, bibliotecas e deploy 😎
 
 - NodeJS
