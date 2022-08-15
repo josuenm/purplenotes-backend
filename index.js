@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-app.use("/test", (req, res) => {
+app.get("/test", (req, res) => {
   const token = req.headers["purplenotes.token"];
   const headers = req.headers;
 
