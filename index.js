@@ -17,6 +17,13 @@ app.use(
   })
 );
 
+app.use("/test", (req, res) => {
+  const token = req.headers["purplenotes.token"];
+  const headers = req.headers;
+
+  res.json({ token, headers });
+});
+
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
 
