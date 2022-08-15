@@ -18,9 +18,13 @@ app.use(
 );
 
 app.get("/test", (req, res) => {
-  const request = req;
+  const token = req.headers["purple-notes"];
 
-  res.json({ request: request });
+  if (token) {
+    res.json({ token });
+  } else {
+    res.json({ token: false });
+  }
 });
 
 app.use("/users", usersRouter);
