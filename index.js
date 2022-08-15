@@ -17,12 +17,6 @@ app.use(
   })
 );
 
-app.get("/test", (req, res) => {
-  const headers = req.headers;
-
-  res.json({ headers });
-});
-
 app.use("/users", usersRouter);
 app.use("/notes", notesRouter);
 
