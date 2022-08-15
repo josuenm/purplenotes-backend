@@ -13,19 +13,14 @@ app.use(express.json());
 
 app.use(
   cors({
-    credentials: false,
     origin: CORS_URL,
   })
 );
 
 app.get("/test", (req, res) => {
-  const token = req.headers["purple-notes"];
+  const headers = req.headers;
 
-  if (token) {
-    res.json({ token });
-  } else {
-    res.json({ token: false });
-  }
+  res.json({ headers });
 });
 
 app.use("/users", usersRouter);
