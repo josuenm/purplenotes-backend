@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use(
   cors({
+    credentials: true,
     origin: CORS_URL,
   })
 );
