@@ -11,16 +11,18 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
+  const formatedEmail = email.toLowerCase();
+
   try {
-    const userAleadyExists = await User.findOne({ email });
+    const userAleadyExists = await User.findOne({ formatedEmail });
 
     if (userAleadyExists) {
       return res.status(409).json({ error: "User already exists" });
     }
 
-    const user = new User({ name, email, password });
+    const user = new User({ name, formatedEmail, password });
     await user.save();
-    const token = jwt.sign({ email }, secret, { expiresIn: "30d" });
+    const token = jwt.sign({ formatedEmail }, secret, { expiresIn: "30d" });
     res.status(201).json({ user, token });
   } catch {
     res.status(500).json({ error: "Error registering user" });
@@ -30,8 +32,10 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
+  const formatedEmail = email.toLowerCase();
+
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ formatedEmail });
 
     if (!user) {
       res.status(404).json({ error: "Incorrect email or passowrd" });
@@ -40,7 +44,9 @@ router.post("/login", async (req, res) => {
         if (!same) {
           res.status(401).json({ error: "Incorrect email or passowrd" });
         } else {
-          const token = jwt.sign({ email }, secret, { expiresIn: "30d" });
+          const token = jwt.sign({ formatedEmail }, secret, {
+            expiresIn: "30d",
+          });
           res.json({ user, token });
         }
       });
