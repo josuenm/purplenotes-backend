@@ -14,15 +14,17 @@ router.post("/register", async (req, res) => {
   const formatedEmail = email.toLowerCase();
 
   try {
-    const userAleadyExists = await User.findOne({ formatedEmail });
+    const userAleadyExists = await User.findOne({ email: formatedEmail });
 
     if (userAleadyExists) {
       return res.status(409).json({ error: "User already exists" });
     }
 
-    const user = new User({ name, formatedEmail, password });
+    const user = new User({ name, email: formatedEmail, password });
     await user.save();
-    const token = jwt.sign({ formatedEmail }, secret, { expiresIn: "30d" });
+    const token = jwt.sign({ email: formatedEmail }, secret, {
+      expiresIn: "30d",
+    });
     res.status(201).json({ user, token });
   } catch {
     res.status(500).json({ error: "Error registering user" });
@@ -35,22 +37,22 @@ router.post("/login", async (req, res) => {
   const formatedEmail = email.toLowerCase();
 
   try {
-    const user = await User.findOne({ formatedEmail });
+    const user = await User.findOne({ email: formatedEmail });
 
     if (!user) {
-      res.status(404).json({ error: "Incorrect email or passowrd" });
-    } else {
-      user.isCorrectPassword(password, function (same) {
-        if (!same) {
-          res.status(401).json({ error: "Incorrect email or passowrd" });
-        } else {
-          const token = jwt.sign({ formatedEmail }, secret, {
-            expiresIn: "30d",
-          });
-          res.json({ user, token });
-        }
-      });
+      return res.status(404).json({ error: "Incorrect email or passowrd" });
     }
+
+    user.isCorrectPassword(password, function (same) {
+      if (!same) {
+        res.status(401).json({ error: "Incorrect email or passowrd" });
+      } else {
+        const token = jwt.sign({ email: formatedEmail }, secret, {
+          expiresIn: "30d",
+        });
+        res.json({ user, token });
+      }
+    });
   } catch (error) {
     res.status(500).json({ error: "Internal error, please try again" });
   }
@@ -92,7 +94,6 @@ router.put("/password", WithAuth, async (req, res) => {
 router.delete("/delete", WithAuth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user._id });
-
     user.delete();
 
     res.status(204).send();
