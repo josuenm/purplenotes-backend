@@ -1,12 +1,12 @@
 # Purple Notes - back-end
 
-Essa é uma aplicação back-end para suprir o front-end com autenticação e manipulação das anotações.
+This is a note application focused on accessing from anywhere and whenever you want.
 
 <p>
-Acesse agora <a href="https://purplenotes.vercel.app" target="_blank">https://purplenotes.vercel.app</a>.
+Access now <a href="https://purplenotes.vercel.app" target="_blank">https://purplenotes.vercel.app</a>.
 </p>
 
-# Linguagens, plataformas, banco de dados, bibliotecas e deploy 😎
+# Languages, libraries and deploy 😎
 
 - NodeJS
 - Express
@@ -16,19 +16,19 @@ Acesse agora <a href="https://purplenotes.vercel.app" target="_blank">https://pu
 - bcrypt
 - jotenv
 - jsonwebtoken
-- Deploy pela <a href="heroku.com" target="_blank">Heroku</a>
+- Deploy via <a href="heroku.com" target="_blank">Heroku</a>
 
-# Como instalar o projeto na sua máquina 🛸
+# How to install the project on your machine 🛸
 
-Primeiramente dê um fork no projeto, depois clone ele para um repositório local.
+First fork the project, then clone it to a local repository.
 
-Agora instale todas dependências, para isso utilize `npm install` ou `yarn`.
+Now install all dependencies, for that use `npm install` or `yarn`.
 
-Para o banco de dados MongoDB funcionar localmente você precisa ter ele instalado, então <a href="https://www.youtube.com/watch?v=r6QM1NTzkTI" target="_blank">clique aqui</a> para assitir um vídeo de como instalar.
+For the MongoDB database to work locally you need to have it installed, so <a href="https://www.youtube.com/watch?v=r6QM1NTzkTI" target="_blank">click here</a> to watch a video on how to install.
 
-Para funcionar tudo certo você precisa criar um arquivo `.env` na raíz do projeto e colocar algumas variaveis de ambiente.
+To work everything right you need to create a `.env` file in the root of the project and put some environment variables.
 
-<strong>Cole essas variaveis de ambiente dentro do arquivo `.env`</strong>
+<strong>Paste these environment variables into the file `.env`</strong>
 
 <blockquote>
 
@@ -39,4 +39,4 @@ Para funcionar tudo certo você precisa criar um arquivo `.env` na raíz do proj
 
 </blockquote>
 
-Você pode fazer requisições utilizando <a href="https://insomnia.rest" target="_blank">Insomnia</a> ou <a href="https://www.postman.com" target="_blank">Postman</a> ou outra plataforma de sua escolha.
+You can make requests using <a href="https://insomnia.rest" target="_blank">Insomnia</a> or <a href="https://www.postman.com" target="_blank">Postman</a> or other platform of your choice.
