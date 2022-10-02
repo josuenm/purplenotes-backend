@@ -4,6 +4,7 @@ const User = require("../models/user.js");
 const secret = process.env.JWT_TOKEN;
 
 const WithAuth = (req, res, next) => {
+  console.log(req.headers["purplenotes.token"]);
   const token = req.headers["purplenotes.token"];
 
   if (!token) {
